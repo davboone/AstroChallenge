@@ -12,41 +12,98 @@
 </head>
 <body class="w-75 mx-auto">
 <!-- nav bar -->
-<nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand disabled">Events:</a>
-        <a class="navbar-brand" href="#">Current</a>
-        <a class="navbar-brand" href="#">Upcoming</a>
-        <a class="navbar-brand" href="#">Community</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand mx-3" href="#">Events</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Current</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Upcoming</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Community</a>
+            </li>
+        </ul>
     </div>
 </nav> <!-- end of navbar -->
 <h1 class="text-center">Astro Challenge</h1>
-<div class="border rounded row align-items-center mx-3 my-2">
+<div class="bg-light border rounded row mx-3 my-2">
     <!-- Left column -->
     <div id="left" class="col-12 col-sm-6">
         <!-- Top chunk -->
-        <div class="my-5">
-            <h1 class="text-center">Current Events</h1>
-        </div> <!-- End of top chunk -->
-        <!-- Middle chunk -->
         <div>
-            <h2 class="text-center"></h2>
-            <hr>
-            <div class="row justify-content-center">
-            </div>
-            <hr>
-        </div><!-- End of middle chunk -->
-
-        <!-- Last chunk which is the button -->
-        <div class="text-center">
-
-        </div> <!-- end of button -->
+            <h2 class="text-center my-2">Current Events</h2>
+            <table class="table table-striped table-bordered"><!-- calendar displaying events -->
+                <thead>
+                <tr>
+                    <th scope="col">Monday</th>
+                    <th scope="col">Tuesday</th>
+                    <th scope="col">Wednesday</th>
+                    <th scope="col">Thursday</th>
+                    <th scope="col">Friday</th>
+                    <th scope="col">Saturday</th>
+                    <th scope="col">Sunday</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><sup><strong>1</strong></sup></td>
+                    <td><sup><strong>2</strong></sup></td>
+                    <td><sup><strong>3</strong></sup></td>
+                    <td><sup><strong>4</strong></sup></td>
+                    <td><sup><strong>5</strong></sup></td>
+                    <td><sup><strong>6</strong></sup></td>
+                    <td><sup><strong>7</strong></sup></td>
+                </tr>
+                <tr>
+                    <td><sup><strong>8</strong></sup></td>
+                    <td><sup><strong>9</strong></sup></td>
+                    <td><sup><strong>10</strong></sup></td>
+                    <td><sup><strong>11</strong></sup></td>
+                    <td><sup><strong>12</strong></sup></td>
+                    <td><sup><strong>13</strong></sup></td>
+                    <td><sup><strong>14</strong></sup></td>
+                </tr>
+                <tr>
+                    <td><sup><strong>15</strong></sup></td>
+                    <td><sup><strong>16</strong></sup></td>
+                    <td><sup><strong>17</strong></sup></td>
+                    <td><sup><strong>18</strong></sup></td>
+                    <td><sup><strong>19</strong></sup></td>
+                    <td><sup><strong>20</strong></sup></td>
+                    <td><sup><strong>21</strong></sup></td>
+                </tr>
+                <tr>
+                    <td><sup><strong>22</strong></sup></td>
+                    <td><sup><strong>23</strong></sup></td>
+                    <td><sup><strong>24</strong></sup></td>
+                    <td><sup><strong>25</strong></sup></td>
+                    <td><sup><strong>26</strong></sup></td>
+                    <td><sup><strong>27</strong></sup></td>
+                    <td><sup><strong>28</strong></sup></td>
+                </tr>
+                </tbody>
+            </table><!-- end of calender -->
+        </div>
     </div> <!-- End of left column -->
 
     <!-- Right column -->
     <div id="right" class="col-12 col-sm-6">
-
-    </div>
+        <h2 class="text-center">Event Photos</h2>
+        <div class="row">
+            <img src="images/deepSpace1.jpg" class="w-50 h-50 img-thumbnail">
+            <img src="images/deepSpace2.jpg" class="w-50 h-50 img-thumbnail">
+        </div>
+        <div class="row">
+            <img src="images/deepSpace3.jpg" class="w-50 h-50 img-thumbnail">
+            <img src="images/deepSpace4.jpg" class="w-50 h-50 img-thumbnail">
+        </div>
+    </div> <!-- End of right column -->
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
