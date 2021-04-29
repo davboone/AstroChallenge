@@ -1,0 +1,21 @@
+{
+  "name": "cruiser-baxter/AstroChallenge",
+  "authors": [
+    {
+      "name": "Cruiser Baxter",
+      "email": "cbaxter4@mail.greenriver.edu"
+    },
+    {
+      "name": "Raju Shrestha",
+      "email": "rshrestha9@mail.greenriver.edu"
+    },
+    {
+      "name": "David Boone",
+      "email": "Dboone2@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  },
+  "description": "default composer.json for AstroChallenge web app"
+}
