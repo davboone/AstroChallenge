@@ -17,9 +17,15 @@ $f3 = Base::instance();
 
 // define routes
 $f3->route('GET /', function (){
-    // instantiate a view object
+    // instantiate a views object
     $view = new Template();
     echo $view->render('views/home.html');
+});
+
+$f3->route('GET /upcoming',function (){
+    //Display the home page
+    $view = new Template();
+    echo $view-> render('views/upcoming.html');
 });
 
 // run Fat-Free
