@@ -23,9 +23,14 @@ $f3->route('GET /', function (){
 });
 
 $f3->route('GET /upcoming',function (){
-    //Display the home page
+    //Display the upcoming events page
     $view = new Template();
     echo $view-> render('views/upcoming.html');
+});
+
+$f3->route('GET /community',function (){
+    //Display the community page page
+    header('location: http://dboone.greenriverdev.com/phpbb/');
 });
 
 // run Fat-Free
