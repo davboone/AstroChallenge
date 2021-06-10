@@ -12,6 +12,11 @@ error_reporting(E_ALL);
 
 require_once ('vendor/autoload.php');
 
+// start session
+session_start();
+$con = new Controller($f3);
+$dataLayer = new DataLayer();
+
 // instantiate Fat-Free
 $f3 = Base::instance();
 
@@ -31,6 +36,12 @@ $f3->route('GET /upcoming',function (){
 $f3->route('GET /community',function (){
     //Display the community page page
     header('location: http://dboone.greenriverdev.com/phpbb/');
+});
+
+$f3->route('GET /signup',function (){
+    //Display the upcoming events page
+    $view = new Template();
+    echo $view-> render('views/signup.html');
 });
 
 // run Fat-Free
