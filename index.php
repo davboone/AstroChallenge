@@ -14,8 +14,8 @@ require_once ('vendor/autoload.php');
 
 // start session
 session_start();
-$con = new Controller($f3);
-$dataLayer = new DataLayer();
+//$con = new Controller($f3);
+//$dataLayer = new DataLayer();
 
 // instantiate Fat-Free
 $f3 = Base::instance();

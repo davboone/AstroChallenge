@@ -17,5 +17,8 @@
   "require": {
     "bcosca/fatfree-core": "dev-master"
   },
-  "description": "default composer.json for AstroChallenge web app"
+  "description": "default composer.json for AstroChallenge web app",
+  "autoload": {
+    "classmap": ["classes/", "model/", "controller/"]
+  }
 }
