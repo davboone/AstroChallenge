@@ -14,34 +14,40 @@ require_once ('vendor/autoload.php');
 
 // start session
 session_start();
-//$con = new Controller($f3);
-//$dataLayer = new DataLayer();
 
 // instantiate Fat-Free
 $f3 = Base::instance();
+$con = new Controller($f3);
+$dataLayer = new DataLayer();
+
 
 // define routes
 $f3->route('GET /', function (){
-    // instantiate a views object
-    $view = new Template();
-    echo $view->render('views/home.html');
+    $GLOBALS['con']->home();
 });
 
 $f3->route('GET /upcoming',function (){
-    //Display the upcoming events page
-    $view = new Template();
-    echo $view-> render('views/upcoming.html');
+    $GLOBALS['con']->upcoming();
 });
 
 $f3->route('GET /community',function (){
-    //Display the community page page
-    header('location: http://dboone.greenriverdev.com/phpbb/');
+    $GLOBALS['con']->community();
 });
 
 $f3->route('GET /signup',function (){
-    //Display the upcoming events page
-    $view = new Template();
-    echo $view-> render('views/signup.html');
+    $GLOBALS['con']->signup();
+});
+
+$f3->route('GET /eventdetails',function (){
+    $GLOBALS['con']->eventdetails();
+});
+
+$f3->route('GET /signupsummary',function (){
+    $GLOBALS['con']->signupsummary();
+});
+
+$f3->route('GET /signupsummary',function (){
+    $GLOBALS['con']->currentevent();
 });
 
 // run Fat-Free
