@@ -50,6 +50,13 @@ class Controller
         echo $view-> render('views/currentevent.html');
     }
 
+    function register() {
+        //Display the upcoming events page
+        $view = new Template();
+        echo $view-> render('views/register.html');
+    }
+
+
 
 
 }
