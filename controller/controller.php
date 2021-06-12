@@ -51,6 +51,46 @@ class Controller
     }
 
     function register() {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            //data validation for name [at least two char should be given]
+            if(Validation::validName($_POST['name'])){
+                $_SESSION['name']=$_POST['name'];
+            }
+
+            else{
+                $this->_f3-> set('errors["name"]', 'Please enter a valid name.');
+            }
+
+            if (Validation::validEmail($_POST["email"]))
+            {
+                $this->_f3->set('errors["gender"]', 'Please provide us valid email.');
+            }
+            else {
+                $_SESSION['email'] = $_POST['email'];
+
+            }
+
+
+            $_SESSION['nickname']=$_POST['nickname'];
+            $_SESSION['password']=$_POST['password'];
+
+            if(empty($this->_f3->get('errors'))){
+                //TODO:find the page that we need to route after registering
+                //If there is no error route this to this page
+                header('');
+            }
+
+        }
+
+        $this->_f3->set('names',$_POST['name']);
+        $this->_f3->set('emails',$_POST['email']);
+        $this->_f3->set('nicknames',$_POST['nickname']);
+        $this->_f3->set('passwords',$_POST['password']);
+
+
+
         //Display the upcoming events page
         $view = new Template();
         echo $view-> render('views/register.html');
