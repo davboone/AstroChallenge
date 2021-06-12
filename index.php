@@ -50,5 +50,9 @@ $f3->route('GET /signupsummary',function (){
     $GLOBALS['con']->currentevent();
 });
 
+$f3->route('GET /register',function (){
+    $GLOBALS['con']->register();
+});
+
 // run Fat-Free
 $f3->run();
