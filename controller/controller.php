@@ -27,6 +27,16 @@ class Controller
     }
 
     function signup() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            //TODO check which event was clicked when submit was clicked
+            $eventOne=$_POST['eventOne'];
+            $eventTwo=$_POST['eventTwo'];
+            $eventThree=$_POST['eventThree'];
+            $eventFour=$_POST['eventFour'];
+
+        }
+
         //Display the upcoming events page
         $view = new Template();
         echo $view-> render('views/signup.html');
@@ -40,6 +50,9 @@ class Controller
 
     function signupsummary() {
         //Display the upcoming events page
+
+
+
         $view = new Template();
         echo $view-> render('views/signupsummary.html');
     }
