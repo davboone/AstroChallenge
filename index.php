@@ -20,7 +20,6 @@ $f3 = Base::instance();
 $con = new Controller($f3);
 $dataLayer = new DataLayer();
 
-
 // define routes
 $f3->route('GET /', function (){
     $GLOBALS['con']->home();
@@ -46,7 +45,7 @@ $f3->route('GET /signupsummary',function (){
     $GLOBALS['con']->signupsummary();
 });
 
-$f3->route('GET /signupsummary',function (){
+$f3->route('GET /currentevent',function (){
     $GLOBALS['con']->currentevent();
 });
 
