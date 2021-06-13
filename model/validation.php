@@ -7,6 +7,17 @@
 
 class Validation
 {
+
+    //checks if user name char is greater than 2 without space at least
+    static function validName($name){
+        return ((preg_match('/^[a-zA-Z]/', $name) && strlen(trim($name))>=2));
+    }
+
+    //validate email
+    static function validEmail($email){
+        return (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email));
+    }
+
     //Return true if a food is valid
     static function validFood($food)
     {

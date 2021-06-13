@@ -25,11 +25,11 @@ class DataLayer
         //Connect to the database
         try {
             //Instantiate a PDO database object
-            $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-            //echo "Connected to database!";
+            $this->_dbh = new PDO('DB_USERNAME', 'DB_DSN', 'DB_PASSWORD');
+            echo "Connected to database!";
         } catch (PDOException $e) {
-            //echo $e->getMessage();  //for debugging only
-            die ("Oh darn! We're having a bad day. Please call to place your order.");
+//            echo $e->getMessage();  //for debugging only
+            die ("Oh darn! We're having a bad day. Please call support department.");
         }
     }
 

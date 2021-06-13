@@ -60,12 +60,12 @@ class Controller
             }
 
             else{
-                $this->_f3-> set('errors["name"]', 'Please enter a valid name.');
+                $this->_f3-> set('errors["name"]', '! Please enter a valid name. !');
             }
 
             if (Validation::validEmail($_POST["email"]))
             {
-                $this->_f3->set('errors["gender"]', 'Please provide us valid email.');
+                $this->_f3->set('errors["gender"]', '! Please provide us valid email. !');
             }
             else {
                 $_SESSION['email'] = $_POST['email'];
