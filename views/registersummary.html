@@ -1,0 +1,21 @@
+<include href="views/header.html">
+    <body class="w-75 mx-auto">
+    <h1>Register Summary</h1>
+    <div>
+<h3>Thank you for registering. The information your provided is shown below.</h3>
+
+        <br>
+
+        <h5>Full Name: {{ @SESSION.user->getUserName() }}</h5>
+        <h5>Email: {{ @SESSION.user->getEmail() }}</h5>
+        <h5>Nickname: {{ @SESSION.user->getNickname() }}</h5>
+        <h5>State: {{ @SESSION.user->getLocation() }}</h5>
+
+        <check if="{{ @SESSION.user instanceof Admin}}">
+            <h5>User Type: Administrator</h5>
+        </check>
+        <check if="{{ !@SESSION.user instanceof Admin}}">
+            <h5>User Type: Member</h5>
+        </check>
+    </div>
+    <include href="views/footer.html">

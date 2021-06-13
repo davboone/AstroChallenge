@@ -15,12 +15,13 @@ class User
      * @param $_email
      * @param $_nickname
      */
-    public function __construct($_userName, $_password, $_email, $_nickname)
+    public function __construct($_userName="", $_password="", $_email="", $_nickname="", $_location="")
     {
         $this->_userName = $_userName;
         $this->_password = $_password;
         $this->_email = $_email;
         $this->_nickname = $_nickname;
+        $this->_location = $_location;
     }
 
     /**

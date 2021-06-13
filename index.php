@@ -49,8 +49,12 @@ $f3->route('GET /currentevent',function (){
     $GLOBALS['con']->currentevent();
 });
 
-$f3->route('GET /register',function (){
+$f3->route('GET|POST /register',function (){
     $GLOBALS['con']->register();
+});
+
+$f3->route('GET /registersummary',function (){
+    $GLOBALS['con']->registersummary();
 });
 
 // run Fat-Free

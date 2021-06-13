@@ -61,11 +61,21 @@ class Controller
     }
 
     function register() {
+        //Reinitialize session array
+        $_SESSION = array();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // check if a regular or admin registration
+            // then instantiate new object
+            if (isset($_POST['admin'])) {
+                $user = new Admin();
+            } else {
+                $user = new User();
+            }
+
             //data validation for name [at least two char should be given]
-            if(Validation::validName($_POST['name'])){
-                $_SESSION['name']=$_POST['name'];
+            if(Validation::validName(str_replace(' ', '', $_POST['name']))){
+                $user->setUserName($_POST['name']);
             }
             else{
                 $this->_f3-> set('errors["name"]', '! Please enter a valid name. !');
@@ -73,31 +83,40 @@ class Controller
 
             if (Validation::validEmail($_POST["email"]))
             {
-                $this->_f3->set('errors["gender"]', '! Please provide us valid email. !');
+                $user->setEmail($_POST['email']);
             }
             else {
-                $_SESSION['email'] = $_POST['email'];
-
+                $this->_f3->set('errors["email"]', '! Please provide a valid email address. !');
             }
 
-            $_SESSION['nickname']=$_POST['nickname'];
-            $_SESSION['password']=$_POST['password'];
+            if (Validation::validPassword($_POST['password'])) {
+                $user->setPassword($_POST['password']);
+            } else {
+                $this->_f3->set('errors["pass"]', '! Password must be at least 8 characters !');
+            }
+
+            $user->setNickname($_POST['nickname']);
+            $user->setLocation($_POST['state']);
 
             if(empty($this->_f3->get('errors'))){
-                //TODO:find the page that we need to route after registering
+                // save user object in session
+                $_SESSION['user'] = $user;
                 //If there is no error route this to this page
-                header('location: signupsummary');
+                header('location: registersummary');
             }
         }
 
-        $this->_f3->set('names',$_POST['name']);
-        $this->_f3->set('emails',$_POST['email']);
-        $this->_f3->set('nicknames',$_POST['nickname']);
-        $this->_f3->set('passwords',$_POST['password']);
 
-        //Display the upcoming events page
+        //Display the account registration page
         $view = new Template();
         echo $view-> render('views/register.html');
+    }
+
+    function registersummary()
+    {
+        //Display the upcoming events page
+        $view = new Template();
+        echo $view-> render('views/registersummary.html');
     }
 
 }

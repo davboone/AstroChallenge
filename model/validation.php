@@ -8,41 +8,36 @@
 class Validation
 {
 
-    //checks if user name char is greater than 2 without space at least
-    static function validName($name){
-        return ((preg_match('/^[a-zA-Z]/', $name) && strlen(trim($name))>=2));
-    }
-
-    //validate email
-    static function validEmail($email){
-        return (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email));
-    }
-
-    //Return true if a food is valid
-    static function validFood($food)
+    /** function takes in a string and validates that the string only
+     * contains letters and no numbers or special characters
+     * @param $name string to be be validated
+     * @return bool true if $name is only letters otherwise false
+     */
+    static function validName($name): bool
     {
-        return strlen(trim($food)) >= 2;
+        return ctype_alpha($name);
     }
 
-    //Return true if meal is valid
-    static function validMeal($meal)
+    /** function takes in a string and validates that it represents
+     * a valid email address format
+     * @param $email string to be validated as email address
+     * @return bool true if $email is a valid email address format
+     * otherwise false
+     */
+    static function validEmail($email): bool
     {
-        return in_array($meal, DataLayer::getMeals());
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
-    //Return true if *all* condiments are valid
-    static function validCondiments($condiments)
+    /** validates that the string passed as password
+     * is at least 8 char long
+     * @param $pass string to validate
+     * @return bool returns true if string is at least 8 cahr long
+     * otherwise returns false
+     */
+    static function validPassword($pass): bool
     {
-        $validCondiments = DataLayer::getCondiments();
-
-        //Make sure each selected condiment is valid
-        foreach ($condiments as $userChoice) {
-            if (!in_array($userChoice, $validCondiments)) {
-                return false;
-            }
-        }
-
-        //All choices are valid
-        return true;
+        return strlen($pass) >= 8;
     }
+
 }
