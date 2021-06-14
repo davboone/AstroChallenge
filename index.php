@@ -91,5 +91,9 @@ $f3->route('GET|POST /editevent',function (){
     $GLOBALS['con']->editevent();
 });
 
+$f3->route('GET|POST /allevents',function (){
+    $GLOBALS['con']->allevents();
+});
+
 // run Fat-Free
 $f3->run();

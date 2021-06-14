@@ -113,7 +113,22 @@ class DataLayer
         return $result;
     }
 
-    function getEvents($eventid)
+    function getEvents()
+    {
+        //1. Define the query
+        $sql = "SELECT * FROM events";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //4. Execute the query
+        $statement->execute();
+
+        //5. Process the results (get OrderID)
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function getOneEvent($eventid)
     {
         //1. Define the query
         $sql = "SELECT * FROM events WHERE eventid = '$eventid'";

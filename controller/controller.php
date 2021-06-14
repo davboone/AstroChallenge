@@ -323,4 +323,16 @@ class Controller
         $view = new Template();
         echo $view-> render('views/editevent.html');
     }
+
+    function allevents() {
+        // send data to view
+        $result = $GLOBALS['dataLayer']->getEvents();
+
+        // add data to hive
+        $this->_f3->set('events', $result);
+
+        //Display the page
+        $view = new Template();
+        echo $view-> render('views/allevents.html');
+    }
 }
