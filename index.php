@@ -35,6 +35,10 @@ $f3->route('GET /upcoming',function (){
     $GLOBALS['con']->upcoming();
 });
 
+$f3->route('GET /pastevent',function (){
+    $GLOBALS['con']->pastevent();
+});
+
 $f3->route('GET /community',function (){
     $GLOBALS['con']->community();
 });

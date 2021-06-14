@@ -68,6 +68,13 @@ class Controller
         echo $view-> render('views/currentevent.html');
     }
 
+    function pastevent() {
+        //Display the upcoming events page
+        $view = new Template();
+        echo $view-> render('views/pastevent.html');
+    }
+
+
     function register() {
         //Reinitialize session array
         $_SESSION = array();
