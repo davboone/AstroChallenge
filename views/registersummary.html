@@ -17,5 +17,6 @@
         <check if="{{ !@SESSION.user instanceof Admin}}">
             <h5>User Type: Member</h5>
         </check>
+        <h5>User ID: {{ @userId }}</h5>
     </div>
     <include href="views/footer.html">

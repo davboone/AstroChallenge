@@ -61,8 +61,8 @@ class Controller
     }
 
     function register() {
-        //Reinitialize session array
-        $_SESSION = array();
+        // erase user object
+        $_SESSION['user'] = "";
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // check if a regular or admin registration
@@ -114,9 +114,39 @@ class Controller
 
     function registersummary()
     {
+        $userId = $GLOBALS['dataLayer']->saveUser($_SESSION['user']);
+        $this->_f3->set('userId', $userId);
+
+
         //Display the upcoming events page
         $view = new Template();
         echo $view-> render('views/registersummary.html');
+    }
+
+    function login()
+    {
+        // reset session array
+        //Reinitialize session array
+        $_SESSION = array();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $result = $GLOBALS['dataLayer']->getUser($email);
+
+            
+
+            if ($email == $result['email'] && $password == $result['password']) {
+                echo "<h1>SUCCESSFUL LOGIN!!!</h1>";
+            } else {
+                echo "<h1>FAILED LOGIN!!!</h1>";
+            }
+
+
+        }
+        //Display the upcoming events page
+        $view = new Template();
+        echo $view-> render('views/login.html');
     }
 
 }

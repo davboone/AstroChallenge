@@ -37,34 +37,46 @@ class DataLayer
     function saveUser($user)
     {
         //1. Define the query
-        $sql = "INSERT INTO orders (food, meal, condiments) 
-                VALUES (:food, :meal, :condiments)";
+        $sql = "INSERT INTO users (username, nickname, userlocation, archive, usertype, password, email) 
+                VALUES (:username, :nickname, :userlocation, :archive, :usertype, :password, :email)";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         //3. Bind the parameters
-        $statement->bindParam(':food', $user->getFood(), PDO::PARAM_STR);
-        $statement->bindParam(':meal', $user->getMeal(), PDO::PARAM_STR);
-        $statement->bindParam(':condiments', $user->getCondiments(), PDO::PARAM_STR);
+        $statement->bindParam(':username', $user->getUserName(), PDO::PARAM_STR);
+        $statement->bindParam(':nickname', $user->getNickname(), PDO::PARAM_STR);
+        $statement->bindParam(':userlocation', $user->getLocation(), PDO::PARAM_STR);
+        $statement->bindParam(':password', $user->getPassword(), PDO::PARAM_STR);
+        $statement->bindParam(':email', $user->getEmail(), PDO::PARAM_STR);
+
+        // set account type and archive if admin
+        if ($user instanceof Admin) {
+            $userType = "admin";
+            $archive = 1;
+        } else {
+            $userType = "standard";
+            $archive = 0;
+        }
+
+        $statement->bindParam(':archive', $archive, PDO::PARAM_STR);
+        $statement->bindParam(':usertype', $userType, PDO::PARAM_STR);
 
         //4. Execute the query
         $statement->execute();
 
-        //5. Process the results (get OrderID)
+        //5. Process the results
         $id = $this->_dbh->lastInsertId();
         return $id;
     }
 
-    function getUser()
+    function getUser($email)
     {
         //1. Define the query
-        $sql = "SELECT * FROM orders;";
+        $sql = "SELECT * FROM users WHERE email = '$email'";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
-
-        //3. Bind the parameters
 
         //4. Execute the query
         $statement->execute();

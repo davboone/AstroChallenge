@@ -57,5 +57,9 @@ $f3->route('GET /registersummary',function (){
     $GLOBALS['con']->registersummary();
 });
 
+$f3->route('GET|POST /login',function (){
+    $GLOBALS['con']->login();
+});
+
 // run Fat-Free
 $f3->run();
