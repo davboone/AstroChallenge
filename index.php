@@ -11,6 +11,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once ('vendor/autoload.php');
+require_once ('controller/controller.php');
+require_once ('model/validation.php');
 
 // start session
 session_start();
@@ -63,6 +65,10 @@ $f3->route('GET /registersummary',function (){
 
 $f3->route('GET|POST /login',function (){
     $GLOBALS['con']->login();
+});
+
+$f3->route('GET|POST /admin',function (){
+   $GLOBALS['con']->admin();
 });
 
 // run Fat-Free

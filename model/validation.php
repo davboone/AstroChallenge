@@ -40,4 +40,9 @@ class Validation
         return strlen($pass) >= 8;
     }
 
+    static function validDate($day,$month,$year): bool
+    {
+        return checkdate($month,$day,$year);
+    }
+
 }

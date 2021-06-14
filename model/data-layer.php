@@ -85,6 +85,29 @@ class DataLayer
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function saveEvents($eventId,$start,$end)
+    {
+        //1. Define the query
+        $sql = "INSERT INTO events (eventid, starttime, endtime) 
+                VALUES (:eventid, :starttime, :endtime)";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':eventid', $eventId, PDO::PARAM_STR);
+        $statement->bindParam(':starttime', $start, PDO::PARAM_STR);
+        $statement->bindParam(':endtime', $end, PDO::PARAM_STR);
+
+
+        //4. Execute the query
+        $statement->execute();
+
+        //5. Process the results
+        $id = $this->_dbh->lastInsertId();
+        return $id;
+    }
+
     function getEvents()
     {
         //1. Define the query

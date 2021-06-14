@@ -164,4 +164,43 @@ class Controller
         echo $view-> render('views/login.html');
     }
 
+    function admin()
+    {
+        $eventName = "";
+        $startTime = "";
+        $endTime = "";
+        //check if the user account is an Admin type
+        if (!$_SESSION['loggedIn'] instanceof Admin) {
+            //if its not redirect to the login page
+            header('location: login');
+        } else{
+            //if it is an admin this is ran once you submit an event
+            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $startTime = preg_split("/[-\s:]/",$_POST['eventStart']);
+                $endTime = preg_split("/[-\s:]/",$_POST['eventEnd']);
+                $eventName = $_POST['eventName'];
+
+                //validate the dates
+                if (Validation::validDate($startTime[2],$startTime[1],$startTime[0])) {
+                    $startTime = $_POST['eventStart'];
+                } else {
+                    $this->_f3->set('errors["eventStart"]', '! Please submit correct date format !');
+                }
+
+                if (Validation::validDate($endTime[2],$endTime[1],$endTime[0])) {
+                    $endTime = $_POST['eventEnd'];
+                } else {
+                    $this->_f3->set('errors["eventEnd"]', '! Please submit correct date format !');
+                }
+
+                if(empty($this->_f3->get('errors'))){
+                    $GLOBALS['dataLayer']->saveEvents($eventName,$startTime,$endTime);
+                }
+            }
+        }
+
+        //Display the admin page
+        $view = new Template();
+        echo $view-> render('views/admin.html');
+    }
 }
