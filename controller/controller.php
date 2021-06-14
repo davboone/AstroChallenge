@@ -164,7 +164,7 @@ class Controller
         echo $view-> render('views/login.html');
     }
 
-    function admin()
+    function addevent()
     {
         $eventName = "";
         $startTime = "";
@@ -201,6 +201,34 @@ class Controller
 
         //Display the admin page
         $view = new Template();
-        echo $view-> render('views/admin.html');
+        echo $view-> render('views/addevent.html');
+    }
+
+    function adminportal()
+    {
+        //Display the upcoming events page
+        $view = new Template();
+        echo $view-> render('views/adminportal.html');
+    }
+
+    function addobject()
+    {
+        //Display the upcoming events page
+        $view = new Template();
+        echo $view-> render('views/addobject.html');
+    }
+
+    function editobject()
+    {
+        //Display the upcoming events page
+        $view = new Template();
+        echo $view-> render('views/editobject.html');
+    }
+
+    function editevent()
+    {
+        //Display the upcoming events page
+        $view = new Template();
+        echo $view-> render('views/editevent.html');
     }
 }

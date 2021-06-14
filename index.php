@@ -67,8 +67,24 @@ $f3->route('GET|POST /login',function (){
     $GLOBALS['con']->login();
 });
 
-$f3->route('GET|POST /admin',function (){
-   $GLOBALS['con']->admin();
+$f3->route('GET|POST /adminportal',function (){
+   $GLOBALS['con']->adminportal();
+});
+
+$f3->route('GET|POST /addobject',function (){
+    $GLOBALS['con']->addobject();
+});
+
+$f3->route('GET|POST /addevent',function (){
+    $GLOBALS['con']->addevent();
+});
+
+$f3->route('GET|POST /editobject',function (){
+    $GLOBALS['con']->editobject();
+});
+
+$f3->route('GET|POST /editevent',function (){
+    $GLOBALS['con']->editevent();
 });
 
 // run Fat-Free
