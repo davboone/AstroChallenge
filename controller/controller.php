@@ -218,6 +218,9 @@ class Controller
 
     function addobject()
     {
+        // clear old success or failure msg.
+        unset($_SESSION['success']);
+        
         //check if the user account is an Admin type
         if (!$_SESSION['loggedIn'] instanceof Admin) {
             //if its not redirect to the login page
