@@ -185,14 +185,19 @@ class Controller
 
     function addevent()
     {
-        $eventName = "";
-        $startTime = "";
-        $endTime = "";
+
         //check if the user account is an Admin type
         if (!$_SESSION['loggedIn'] instanceof Admin) {
             //if its not redirect to the login page
             header('location: login');
         } else{
+            // clear old success or failure msg.
+            unset($_SESSION['success']);
+            $eventName = "";
+            $startTime = "";
+            $endTime = "";
+
+
             //if it is an admin this is ran once you submit an event
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $startTime = preg_split("/[-\s:]/",$_POST['eventStart']);
@@ -232,10 +237,15 @@ class Controller
                     $this->_f3->set('errors["event_image"]', '! Please submit correct date format !');
                 }
 
-
-
                 if(empty($this->_f3->get('errors'))){
-                    $GLOBALS['dataLayer']->saveEvents($eventName,$startTime,$endTime,$objectid,$event_details,$event_desc,$event_image);
+                        $result = $GLOBALS['dataLayer']->saveEvents($eventName,$startTime,$endTime,
+                        $objectid,$event_details,$event_desc,$event_image);
+
+                    if ($result == 'true') {
+                        $_SESSION['success'] = true;
+                    } else {
+                        $_SESSION['success'] = false;
+                    }
                 }
 
             }

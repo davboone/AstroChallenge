@@ -1,6 +1,12 @@
 <include href="views/header.html">
     <body class="w-75 mx-auto">
     <h1>Add New Event</h1>
+    <check if="{{isset(@SESSION.success) && @SESSION.success == true }}">
+        <h5 class="text-center">Successfully saved new event to Database!</h5>
+    </check>
+    <check if="{{ isset(@SESSION.success) && @SESSION.success == false }}">
+        <h5 class="text-center">FAILED!!!  event NOT saved to Database!</h5>
+    </check>
     <form class="main-block mt-3" action="#" method="post">
         <div class="form-group">
             <label for="eventName">Event Name</label>
