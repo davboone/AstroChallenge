@@ -2,7 +2,7 @@
     <body class="w-75 mx-auto">
     <h1>Register Summary</h1>
     <div>
-<h3>Thank you for registering. The information your provided is shown below.</h3>
+<h3>Thank you for registering. The information you provided is shown below.</h3>
 
         <br>
 
@@ -17,6 +17,5 @@
         <check if="{{ !@SESSION.user instanceof Admin}}">
             <h5>User Type: Member</h5>
         </check>
-        <h5>User ID: {{ @userId }}</h5>
     </div>
     <include href="views/footer.html">

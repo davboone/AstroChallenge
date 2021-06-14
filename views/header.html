@@ -41,7 +41,9 @@
           <a class="nav-link" href="community">Community</a>
         </li>
       </ul>
-      <a class="nav-link" href="adminportal">Admin</a> |
+      <check if="{{ @SESSION.loggedIn instanceof Admin }}">
+        <a class="nav-link" href="adminportal">Admin</a> |
+      </check>
       <a class="nav-link" href="login">Login</a> |
       <a class="nav-link" href="login">Logout</a>
     </div>

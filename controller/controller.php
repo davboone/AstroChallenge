@@ -125,8 +125,7 @@ class Controller
         $userId = $GLOBALS['dataLayer']->saveUser($_SESSION['user']);
         $this->_f3->set('userId', $userId);
 
-
-        //Display the upcoming events page
+        //Display the page
         $view = new Template();
         echo $view-> render('views/registersummary.html');
     }
@@ -206,6 +205,12 @@ class Controller
 
     function adminportal()
     {
+        //check if the user account is an Admin type
+        if (!$_SESSION['loggedIn'] instanceof Admin) {
+            //if its not redirect to the login page
+            header('location: login');
+        }
+
         //Display the upcoming events page
         $view = new Template();
         echo $view-> render('views/adminportal.html');
@@ -213,6 +218,12 @@ class Controller
 
     function addobject()
     {
+        //check if the user account is an Admin type
+        if (!$_SESSION['loggedIn'] instanceof Admin) {
+            //if its not redirect to the login page
+            header('location: login');
+        }
+
         //Display the upcoming events page
         $view = new Template();
         echo $view-> render('views/addobject.html');
@@ -220,6 +231,12 @@ class Controller
 
     function editobject()
     {
+        //check if the user account is an Admin type
+        if (!$_SESSION['loggedIn'] instanceof Admin) {
+            //if its not redirect to the login page
+            header('location: login');
+        }
+
         //Display the upcoming events page
         $view = new Template();
         echo $view-> render('views/editobject.html');
@@ -227,6 +244,12 @@ class Controller
 
     function editevent()
     {
+        //check if the user account is an Admin type
+        if (!$_SESSION['loggedIn'] instanceof Admin) {
+            //if its not redirect to the login page
+            header('location: login');
+        }
+
         //Display the upcoming events page
         $view = new Template();
         echo $view-> render('views/editevent.html');
