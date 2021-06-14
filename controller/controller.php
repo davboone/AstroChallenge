@@ -170,6 +170,19 @@ class Controller
         echo $view-> render('views/login.html');
     }
 
+    function adminportal()
+    {
+        //check if the user account is an Admin type
+        if (!$_SESSION['loggedIn'] instanceof Admin) {
+            //if its not redirect to the login page
+            header('location: login');
+        }
+
+        //Display the page
+        $view = new Template();
+        echo $view-> render('views/adminportal.html');
+    }
+
     function addevent()
     {
         $eventName = "";
@@ -198,29 +211,39 @@ class Controller
                 } else {
                     $this->_f3->set('errors["eventEnd"]', '! Please submit correct date format !');
                 }
+                if (Validation::validInput($_POST['objectid'])){
+                    $objectid = $_POST['objectid'];
+                } else {
+                    $this->_f3->set('errors["objectid"]', '! Please submit correct date format !');
+                }
+                if (Validation::validInput($_POST['event_details'])) {
+                    $event_details = $_POST['event_details'];
+                } else {
+                    $this->_f3->set('errors["event_details"]', '! Please submit correct date format !');
+                }
+                if (Validation::validInput($_POST['event_desc'])) {
+                    $event_desc = $_POST['event_desc'];
+                } else {
+                    $this->_f3->set('errors["event_desc"]', '! Please submit correct date format !');
+                }
+                if (Validation::validInput($_POST['event_image'])) {
+                    $event_image = $_POST['event_image'];
+                } else {
+                    $this->_f3->set('errors["event_image"]', '! Please submit correct date format !');
+                }
+
+
 
                 if(empty($this->_f3->get('errors'))){
-                    $GLOBALS['dataLayer']->saveEvents($eventName,$startTime,$endTime);
+                    $GLOBALS['dataLayer']->saveEvents($eventName,$startTime,$endTime,$objectid,$event_details,$event_desc,$event_image);
                 }
+
             }
         }
 
         //Display the page
         $view = new Template();
         echo $view-> render('views/addevent.html');
-    }
-
-    function adminportal()
-    {
-        //check if the user account is an Admin type
-        if (!$_SESSION['loggedIn'] instanceof Admin) {
-            //if its not redirect to the login page
-            header('location: login');
-        }
-
-        //Display the page
-        $view = new Template();
-        echo $view-> render('views/adminportal.html');
     }
 
     function addobject()

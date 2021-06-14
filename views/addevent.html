@@ -9,14 +9,43 @@
 
 
         <div class="form-group">
-            <label for="eventStart">Event Start</label>
-            <input type="text" class="form-control" id="eventStart" name="eventStart" placeholder="2021-06-20">
+            <label for="eventStart">Event Start Time. example: 2021-06-27</label>
+            <input type="text" class="form-control" id="eventStart" name="eventStart">
         </div>
 
 
         <div class="form-group">
-            <label for="eventEnd">Event End</label>
-            <input type="text" class="form-control" id="eventEnd" name="eventEnd" placeholder="2021-06-27">
+            <label for="eventEnd">Event End Time. example: 2021-06-28</label>
+            <input type="text" class="form-control" id="eventEnd" name="eventEnd">
+        </div>
+
+        <div class="form-group">
+            <label for="objectid">Object ID. Must match an existing Object in the Database</label>
+            <input type="text" class="form-control" id="objectid" name="objectid">
+        </div>
+
+        <div class="form-group">
+            <label for="event_details">Event Rules.
+                Example: Refractors only and a maximum focal length of 400mm</label>
+            <textarea class="form-control" id="event_details" name="event_details" rows="4">
+Enter specific rules for the event here. For example, what equipment is allowed,
+such as specific optics or camera types.
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="event_desc">Event Description. Example:
+                Details about the event and the object involved</label>
+            <textarea class="form-control text-left" id="event_desc" name="event_desc" rows="4">
+Enter a detailed description of this event, what celestial objects are involved
+and any other important information for contestants
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="event_image">Event Object Image. Example: messier1.jpg</label>
+
+            <input type="text" class="form-control" id="event_image" name="event_image">
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Submit</button>

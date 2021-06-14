@@ -65,11 +65,10 @@ class DataLayer
         $lastId = $this->_dbh->lastInsertId();
 
         //4. Execute the query
-        $statement->execute();
+        $result = $statement->execute();
 
         //5. Process the results
-        $id = $this->_dbh->lastInsertId();
-        return $id > $lastId;
+        return $result;
     }
 
     function getUser($email)
@@ -87,11 +86,11 @@ class DataLayer
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function saveEvents($eventId,$start,$end)
+    function saveEvents($eventId,$start,$end, $objectid, $event_details, $event_desc, $event_image)
     {
         //1. Define the query
-        $sql = "INSERT INTO events (eventid, starttime, endtime) 
-                VALUES (:eventid, :starttime, :endtime)";
+        $sql = "INSERT INTO events (eventid, starttime, endtime, objectid, event_details, event_desc, event_image, archive, event_complete) 
+                VALUES (:eventid, :starttime, :endtime, :objectid, :event_details, :event_desc, :event_image, 0, 0)";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -100,21 +99,24 @@ class DataLayer
         $statement->bindParam(':eventid', $eventId, PDO::PARAM_STR);
         $statement->bindParam(':starttime', $start, PDO::PARAM_STR);
         $statement->bindParam(':endtime', $end, PDO::PARAM_STR);
+        $statement->bindParam(':objectid', $objectid, PDO::PARAM_STR);
+        $statement->bindParam(':event_details', $event_details, PDO::PARAM_STR);
+        $statement->bindParam(':event_desc', $event_desc, PDO::PARAM_STR);
+        $statement->bindParam(':event_image', $event_image, PDO::PARAM_STR);
 
         $lastId = $this->_dbh->lastInsertId();
 
         //4. Execute the query
-        $statement->execute();
+        $result = $statement->execute();
 
         //5. Process the results
-        $id = $this->_dbh->lastInsertId();
-        return $id > $lastId;
+        return $result;
     }
 
-    function getEvents()
+    function getEvents($eventid)
     {
         //1. Define the query
-        $sql = "SELECT * FROM events;";
+        $sql = "SELECT * FROM events WHERE eventid = '$eventid'";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -145,6 +147,21 @@ class DataLayer
 
         //5. Process the results
         return $result;
+    }
+
+    function getObject($objectName)
+    {
+        //1. Define the query
+        $sql = "SELECT * FROM objects WHERE objectname = '$objectName'";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //4. Execute the query
+        $statement->execute();
+
+        //5. Process the results (get OrderID)
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }
