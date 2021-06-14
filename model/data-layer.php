@@ -81,7 +81,7 @@ class DataLayer
         //4. Execute the query
         $statement->execute();
 
-        //5. Process the results (get OrderID)
+        //5. Process the results
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 

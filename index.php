@@ -25,6 +25,10 @@ $f3->route('GET /', function (){
     $GLOBALS['con']->home();
 });
 
+$f3->route('GET /home', function (){
+    $GLOBALS['con']->home();
+});
+
 $f3->route('GET /upcoming',function (){
     $GLOBALS['con']->upcoming();
 });

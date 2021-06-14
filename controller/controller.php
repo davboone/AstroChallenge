@@ -27,6 +27,14 @@ class Controller
     }
 
     function signup() {
+        if (!isset($_SESSION['loggedIn'])) {
+            if (!$_SESSION['loggedIn'] instanceof User) {
+                header('location: login');
+            }
+
+        }
+
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             //TODO check which event was clicked when submit was clicked
@@ -61,8 +69,8 @@ class Controller
     }
 
     function register() {
-        // erase user object
-        $_SESSION['user'] = "";
+        //Reinitialize session array
+        $_SESSION = array();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // check if a regular or admin registration
@@ -134,12 +142,19 @@ class Controller
             $password = $_POST['password'];
             $result = $GLOBALS['dataLayer']->getUser($email);
 
-            
+            if ($email === $result[0]['email'] && $password === $result[0]['password']) {
 
-            if ($email == $result['email'] && $password == $result['password']) {
-                echo "<h1>SUCCESSFUL LOGIN!!!</h1>";
+                if ($result[0]['usertype'] === 'admin') {
+                    $user = new Admin();
+                } else {
+                    $user = new User();
+                }
+                $user->setEmail($email);
+                $_SESSION['loggedIn'] = $user;
+                header('location: home');
+
             } else {
-                echo "<h1>FAILED LOGIN!!!</h1>";
+                echo "<h2>Invalid username or password!</h2>";
             }
 
 
