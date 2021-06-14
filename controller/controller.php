@@ -198,7 +198,7 @@ class Controller
             }
         }
 
-        //Display the admin page
+        //Display the page
         $view = new Template();
         echo $view-> render('views/addevent.html');
     }
@@ -211,7 +211,7 @@ class Controller
             header('location: login');
         }
 
-        //Display the upcoming events page
+        //Display the page
         $view = new Template();
         echo $view-> render('views/adminportal.html');
     }
@@ -222,9 +222,35 @@ class Controller
         if (!$_SESSION['loggedIn'] instanceof Admin) {
             //if its not redirect to the login page
             header('location: login');
+        } else {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if (Validation::validInput($_POST['objectname'])) {
+                $objectname = $_POST['objectname'];
+            } else {
+                    $this->_f3->set('errors["objectname"]', '! Event name must be 6 or more characters !');
+                }
+
+                if (Validation::validInput($_POST['objectcoordinates'])) {
+                    $objectcoordinates = $_POST['objectcoordinates'];
+                } else {
+                    $this->_f3->set('errors["objectcoordinates"]', '! Object name must be in RA DEC celestial coordinates format !');
+                }
+
+                if(empty($this->_f3->get('errors'))){
+                    $result = $GLOBALS['dataLayer']->saveObject($objectname,$objectcoordinates);
+
+                    if ($result == 'true') {
+                        $_SESSION['success'] = true;
+                    } else {
+                        $_SESSION['success'] = false;
+                    }
+                }
+            }
+
+
         }
 
-        //Display the upcoming events page
+        //Display the page
         $view = new Template();
         echo $view-> render('views/addobject.html');
     }
@@ -237,7 +263,7 @@ class Controller
             header('location: login');
         }
 
-        //Display the upcoming events page
+        //Display the page
         $view = new Template();
         echo $view-> render('views/editobject.html');
     }
@@ -250,7 +276,7 @@ class Controller
             header('location: login');
         }
 
-        //Display the upcoming events page
+        //Display the page
         $view = new Template();
         echo $view-> render('views/editevent.html');
     }

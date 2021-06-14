@@ -62,12 +62,14 @@ class DataLayer
         $statement->bindParam(':archive', $archive, PDO::PARAM_STR);
         $statement->bindParam(':usertype', $userType, PDO::PARAM_STR);
 
+        $lastId = $this->_dbh->lastInsertId();
+
         //4. Execute the query
         $statement->execute();
 
         //5. Process the results
         $id = $this->_dbh->lastInsertId();
-        return $id;
+        return $id > $lastId;
     }
 
     function getUser($email)
@@ -99,13 +101,14 @@ class DataLayer
         $statement->bindParam(':starttime', $start, PDO::PARAM_STR);
         $statement->bindParam(':endtime', $end, PDO::PARAM_STR);
 
+        $lastId = $this->_dbh->lastInsertId();
 
         //4. Execute the query
         $statement->execute();
 
         //5. Process the results
         $id = $this->_dbh->lastInsertId();
-        return $id;
+        return $id > $lastId;
     }
 
     function getEvents()
@@ -121,6 +124,27 @@ class DataLayer
 
         //5. Process the results (get OrderID)
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function saveObject($objectname, $objectcoordinates)
+    {
+        //1. Define the query
+        $sql = "INSERT INTO objects (objectname, objectcoordinates) 
+                VALUES (:objectname, :objectcoordinates)";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':objectname', $objectname, PDO::PARAM_STR);
+        $statement->bindParam(':objectcoordinates', $objectcoordinates, PDO::PARAM_STR);
+
+        $lastId = $this->_dbh->lastInsertId();
+        //4. Execute the query
+        $result = $statement->execute();
+
+        //5. Process the results
+        return $result;
     }
 
 }

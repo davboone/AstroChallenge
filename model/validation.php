@@ -45,4 +45,9 @@ class Validation
         return checkdate($month,$day,$year);
     }
 
+    static function validInput($input): bool
+    {
+        return strlen($input) >= 6;
+    }
+
 }
