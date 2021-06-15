@@ -258,7 +258,7 @@ class DataLayer
     function getPastEvents()
     {
         //1. Define the query
-        $sql = "SELECT * FROM events WHERE DATEDIFF(CURDATE(),starttime) > 30 ORDER BY starttime DESC ";
+        $sql = "SELECT * FROM events WHERE endtime < CURRENT_DATE AND archive != 1 ORDER BY starttime DESC";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
