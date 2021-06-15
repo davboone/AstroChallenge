@@ -6,8 +6,13 @@
         <form class="main-block" action="#" method="post">
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" >
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="{{ @emails }}" >
             </div>
+
+            <check if="{{ isset(@errors['email']) }}">
+                <span class="err" style="color: red;">{{ @errors['email'] }}</span>
+            </check>
+
 
             <div class="form-group">
                 <label for="password">Password</label>
