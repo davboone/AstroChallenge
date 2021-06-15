@@ -11,12 +11,12 @@
                 <repeat group="{{ @pastEvents }}" value="{{ @event }}">
                     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div class="col p-4 d-flex flex-column position-static">
-                            <h3 class="mb-0">Event on {{@event['starttime']}}</h3>
+                            <h3 class="mb-0">Event on {{trim(@event['starttime']," 00:00:00")}}</h3>
                             <div class="mb-1 text-muted">{{@event['eventid']}}</div>
                             <p><strong>Description: </strong><br>
                                 {{@event['event_desc']}} </p><br>
                             <p><strong>Details: </strong> <br>
-                                {{@event['event_details']}}
+                            {{@event['event_details']}}
 
                         </div>
                         <div class="col p-1 d-flex flex-column position-static">
@@ -25,56 +25,56 @@
                     </div>
                 </repeat>
 
-                <!--                Leaving this here for now for testing purposes -->
-                <!--                <div class="col-12">-->
-                <!--                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
-                <!--                        <div class="col p-1 d-flex flex-column position-static">-->
-                <!--                            <img src="images/blackhole.jpg" alt="imgae" height="399" width="620">-->
-                <!--                        </div>-->
-                <!--                        <div class="col p-4 d-flex flex-column position-static">-->
-                <!--                            <h3 class="mb-0">Event on Jan, 2021</h3>-->
-                <!--                            <div class="mb-1 text-muted">Black Hole</div>-->
-                <!--                            <p><strong>Description: </strong><br>-->
-                <!--                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus nunc at risus commodo,-->
-                <!--                                commodo viverra orci hendrerit. Integer facilisis diam et elit lobortis pellentesque.-->
-                <!--                                Praesent id lacus nec urna euismod ultrices . Quisque dignissi ligula eu lectus-->
-                <!--                                pellentesque, et sagittis ante bibendum. Sed eu ultrices lectus. Sed elementum semper odio-->
-                <!--                                ac hendrerit. </p><br>-->
-                <!--                            <p><strong>Details: </strong> <br>In dapibus odio metus pharetra pellentesque. Fusce semper-->
-                <!--                                at ligula eget-->
-                <!--                                suscipit. Sed ut porta est. Pellentesque tellus nisl, imperdiet sit amet nunc non, rhoncus-->
-                <!--                                consectetur arcu.-->
+<!--                Leaving this here for now for testing purposes -->
+<!--                <div class="col-12">-->
+<!--                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
+<!--                        <div class="col p-1 d-flex flex-column position-static">-->
+<!--                            <img src="images/blackhole.jpg" alt="imgae" height="399" width="620">-->
+<!--                        </div>-->
+<!--                        <div class="col p-4 d-flex flex-column position-static">-->
+<!--                            <h3 class="mb-0">Event on Jan, 2021</h3>-->
+<!--                            <div class="mb-1 text-muted">Black Hole</div>-->
+<!--                            <p><strong>Description: </strong><br>-->
+<!--                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus nunc at risus commodo,-->
+<!--                                commodo viverra orci hendrerit. Integer facilisis diam et elit lobortis pellentesque.-->
+<!--                                Praesent id lacus nec urna euismod ultrices . Quisque dignissi ligula eu lectus-->
+<!--                                pellentesque, et sagittis ante bibendum. Sed eu ultrices lectus. Sed elementum semper odio-->
+<!--                                ac hendrerit. </p><br>-->
+<!--                            <p><strong>Details: </strong> <br>In dapibus odio metus pharetra pellentesque. Fusce semper-->
+<!--                                at ligula eget-->
+<!--                                suscipit. Sed ut porta est. Pellentesque tellus nisl, imperdiet sit amet nunc non, rhoncus-->
+<!--                                consectetur arcu.-->
 
-                <!--                        </div>-->
-                <!--                    </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
 
-                <!--                    <div class="col-12">-->
-                <!--                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
-                <!--                            <div class="col p-4 d-flex flex-column position-static">-->
-                <!--                                <h3 class="mb-0">Event on Dec, 2019</h3>-->
-                <!--                                <div class="mb-1 text-muted">Satalite disaster</div>-->
-                <!--                                <p><strong>Description: </strong><br>-->
-                <!--                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus nunc at risus commodo,-->
-                <!--                                    commodo viverra orci hendrerit. Integer facilisis diam et elit lobortis pellentesque.-->
-                <!--                                    Praesent id lacus nec urna euismo .Quisque dignissim ligula eu lectus-->
-                <!--                                    pellentesque, et sagittis ante bibendum. Sed eu ultrices lectus. Sed elementum semper odio-->
-                <!--                                    ac hendrerit. </p><br>-->
-                <!--                                <p><strong>Details: </strong> <br>In dapibus odio eget metus pharetra pellentesque. Fusce semper-->
-                <!--                                    at ligula eget-->
-                <!--                                    suscipit. Sed ut porta est. Pellentesque tellus nisl, imperdiet sit amet nunc non, rhoncus-->
-                <!--                                    consectetu.-->
+<!--                    <div class="col-12">-->
+<!--                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
+<!--                            <div class="col p-4 d-flex flex-column position-static">-->
+<!--                                <h3 class="mb-0">Event on Dec, 2019</h3>-->
+<!--                                <div class="mb-1 text-muted">Satalite disaster</div>-->
+<!--                                <p><strong>Description: </strong><br>-->
+<!--                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus nunc at risus commodo,-->
+<!--                                    commodo viverra orci hendrerit. Integer facilisis diam et elit lobortis pellentesque.-->
+<!--                                    Praesent id lacus nec urna euismo .Quisque dignissim ligula eu lectus-->
+<!--                                    pellentesque, et sagittis ante bibendum. Sed eu ultrices lectus. Sed elementum semper odio-->
+<!--                                    ac hendrerit. </p><br>-->
+<!--                                <p><strong>Details: </strong> <br>In dapibus odio eget metus pharetra pellentesque. Fusce semper-->
+<!--                                    at ligula eget-->
+<!--                                    suscipit. Sed ut porta est. Pellentesque tellus nisl, imperdiet sit amet nunc non, rhoncus-->
+<!--                                    consectetu.-->
 
-                <!--                            </div>-->
-                <!--                            <div class="col p-1 d-flex flex-column position-relative">-->
-                <!--                                <img src="images/satallite.jpg" alt="satalite" height="399" width="620">-->
-                <!--                            </div>-->
+<!--                            </div>-->
+<!--                            <div class="col p-1 d-flex flex-column position-relative">-->
+<!--                                <img src="images/satallite.jpg" alt="satalite" height="399" width="620">-->
+<!--                            </div>-->
 
-                <!--                        </div>-->
+<!--                        </div>-->
 
-                <!--                    </div>-->
+<!--                    </div>-->
 
-                <!--                </div>-->
+<!--                </div>-->
             </div>
         </div>
 </main>

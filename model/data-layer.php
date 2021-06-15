@@ -143,6 +143,39 @@ class DataLayer
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //current events for within upcoming 30 days
+    function getCurrentEvents()
+    {
+        //1. Define the query
+        $sql = "SELECT * FROM events WHERE 0 < DATEDIFF(starttime,CURDATE()) AND 
+                        DATEDIFF(starttime,CURDATE()) < 30 ORDER BY starttime";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //4. Execute the query
+        $statement->execute();
+
+        //5. Process the results (get OrderID)
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //gets events that are more than a month away
+    function getUpcomingEvents()
+    {
+        //1. Define the query
+        $sql = "SELECT * FROM events WHERE 30 < DATEDIFF(starttime,CURDATE()) ORDER BY starttime";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //4. Execute the query
+        $statement->execute();
+
+        //5. Process the results (get OrderID)
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     function saveObject($objectname, $objectcoordinates)
     {
         //1. Define the query
@@ -220,10 +253,12 @@ class DataLayer
         return $result;
     }
 
+
+    //gets events that are older than a month from today's date
     function getPastEvents()
     {
         //1. Define the query
-        $sql = "SELECT * FROM events WHERE event_complete = '1'";
+        $sql = "SELECT * FROM events WHERE DATEDIFF(CURDATE(),starttime) > 30 ORDER BY starttime DESC ";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -234,5 +269,4 @@ class DataLayer
         //5. Process the results (get OrderID)
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-
 }

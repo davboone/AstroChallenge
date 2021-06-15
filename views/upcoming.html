@@ -3,66 +3,78 @@
 <body class="w-75 mx-auto" style="background-color: lightyellow">
 <div class="row">
     <div class="col-8">
-        <div class="col-12">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <h3 class="mb-0">Full Moon</h3>
-                    <div class="mb-1 text-muted">Nov 26</div>
-                    <img src="images/fullmoon.jpg" alt="image"/></div>
-            </div>
+        <div class="p-4 mt-3 mb-3 bg-light rounded">
+            <h4 class="fst-italic">Upcoming events page.</h4>
+            <p class="mb-0">Welcome to the page of astronomical events. In this page you will find the important
+                astronomical events in coming days. Thank you.</p>
         </div>
-        <div class="col-12">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <h3 class="mb-0">Solar Eclipse</h3>
-                    <div class="mb-1 text-muted">Dec 22</div>
-                    <img src="images/deepSpace2.jpg" alt="image"/></div>
+        <repeat group="{{@upcomingEvents}}" value="{{@event}}">
+            <div class="col-12">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h3 class="mb-0">{{@event['eventid']}}</h3>
+                        <div class="mb-1 text-muted">{{trim(@event['starttime']," 00:00:00")}}</div>
+                        <img src="images/fullmoon.jpg" alt="image"/></div>
+                </div>
             </div>
-        </div>
+        </repeat>
 
-        <div class="col-12">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <h3 class="mb-0">Comet</h3>
-                    <div class="mb-1 text-muted">March 11</div>
-                    <img src="images/deepSpace3.jpg" alt="image"/></div>
-            </div>
-        </div>
+<!--        <div class="col-12">-->
+<!--            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
+<!--                <div class="col p-4 d-flex flex-column position-static">-->
+<!--                    <h3 class="mb-0">Full Moon</h3>-->
+<!--                    <div class="mb-1 text-muted">Nov 26</div>-->
+<!--                    <img src="images/fullmoon.jpg" alt="image"/></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-12">-->
+<!--            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
+<!--                <div class="col p-4 d-flex flex-column position-static">-->
+<!--                    <h3 class="mb-0">Solar Eclipse</h3>-->
+<!--                    <div class="mb-1 text-muted">Dec 22</div>-->
+<!--                    <img src="images/deepSpace2.jpg" alt="image"/></div>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="col-12">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <h3 class="mb-0">Meteor Shower</h3>
-                    <div class="mb-1 text-muted">July 4</div>
-                    <img src="images/deepSpace4.jpg" alt="image"/></div>
-            </div>
-        </div>
-    </div>
+<!--        <div class="col-12">-->
+<!--            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
+<!--                <div class="col p-4 d-flex flex-column position-static">-->
+<!--                    <h3 class="mb-0">Comet</h3>-->
+<!--                    <div class="mb-1 text-muted">March 11</div>-->
+<!--                    <img src="images/deepSpace3.jpg" alt="image"/></div>-->
+<!--            </div>-->
+<!--        </div>-->
 
-    <div class="col-4">
+<!--        <div class="col-12">-->
+<!--            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
+<!--                <div class="col p-4 d-flex flex-column position-static">-->
+<!--                    <h3 class="mb-0">Meteor Shower</h3>-->
+<!--                    <div class="mb-1 text-muted">July 4</div>-->
+<!--                    <img src="images/deepSpace4.jpg" alt="image"/></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
-        <div class="position-sticky" style="top: 2rem;">
-            <div class="p-4 mb-3 bg-light rounded">
-                <h4 class="fst-italic">Upcoming events page.</h4>
-                <p class="mb-0">Welcome to the page of astronomical events. In this page you will find the important
-                    astronomical events in coming days. Thank you.</p>
-            </div>
+<!--    <div class="col-4">-->
 
-            <div class="p-4">
-                <h4 class="fst-italic">Events you do not want to miss.</h4>
-                <ol class="list-unstyled mb-0">
-                    <a href="#"><li>Full Moon</li></a>
-                    <a href="#"><li>Planetary Event</li></a>
-                    <a href="#"><li>Comet</li></a>
-                    <a href="#"><li>New Moon</li></a>
-                    <a href="#"><li>Lunar Ecliplise</li></a>
-                    <a href="#"><li>Solar Event</li></a>
-                    <a href="#"><li>Spacecraft Event</li></a>
-                    <a href="#"><li>Meteor Shower</li></a>
-                </ol>
-            </div>
-        </div>
-    </div>
+<!--        <div class="position-sticky" style="top: 2rem;">-->
+
+
+<!--            <div class="p-4">-->
+<!--                <h4 class="fst-italic">Events you do not want to miss.</h4>-->
+<!--                <ol class="list-unstyled mb-0">-->
+<!--                    <a href="#"><li>Full Moon</li></a>-->
+<!--                    <a href="#"><li>Planetary Event</li></a>-->
+<!--                    <a href="#"><li>Comet</li></a>-->
+<!--                    <a href="#"><li>New Moon</li></a>-->
+<!--                    <a href="#"><li>Lunar Ecliplise</li></a>-->
+<!--                    <a href="#"><li>Solar Event</li></a>-->
+<!--                    <a href="#"><li>Spacecraft Event</li></a>-->
+<!--                    <a href="#"><li>Meteor Shower</li></a>-->
+<!--                </ol>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 
 <include href="views/footer.html">

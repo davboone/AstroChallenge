@@ -18,6 +18,9 @@ class Controller
 
     function upcoming()
     {
+        $upcomingEvents = $GLOBALS['dataLayer']->getUpcomingEvents();
+        $this->_f3->set('upcomingEvents',$upcomingEvents);
+
         //Display the upcoming events page
         $view = new Template();
         echo $view->render('views/upcoming.html');
@@ -70,7 +73,10 @@ class Controller
 
     function currentevent()
     {
-        //Display the upcoming events page
+        $currentEvents = $GLOBALS['dataLayer']->getCurrentEvents();
+        $this->_f3->set('currentEvents',$currentEvents);
+
+        //Display the events within a month of today's date page
         $view = new Template();
         echo $view->render('views/currentevent.html');
     }
