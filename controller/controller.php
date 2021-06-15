@@ -125,8 +125,27 @@ class Controller
                 $this->_f3->set('errors["pass"]', '! Password must be at least 8 characters !');
             }
 
-            $user->setNickname($_POST['nickname']);
-            $user->setLocation($_POST['state']);
+            if(Validation::validString($_POST['nickname'])){
+                $user->setNickname($_POST['nickname']);
+            }
+            else{
+                $this->_f3->set('errors[nickname]', '! Nickname field cannot be empty !');
+            }
+
+            if(Validation::validString($_POST['state'])){
+                $user->setLocation($_POST['state']);
+
+            }
+            else{
+                $this->_f3->set('errors[state]', '! Please provide your state !');
+            }
+
+            $this->_f3->set('names',$_POST['name']);
+            $this->_f3->set('emails',$_POST['email']);
+            $this->_f3->set('nicknames',$_POST['nickname']);
+            $this->_f3->set('states',$_POST['state']);
+
+
 
             if (empty($this->_f3->get('errors'))) {
                 // save user object in session
