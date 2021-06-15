@@ -50,4 +50,9 @@ class Validation
         return strlen($input) >= 6;
     }
 
+    static function validString($nickname): bool
+    {
+        return strlen($nickname) >=2;
+    }
+
 }
