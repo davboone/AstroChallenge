@@ -9,7 +9,7 @@
 <form class="main-block" action="#" method="post">
     <div class="form-group">
         <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" >
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="{{ @emails }}" >
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
 
@@ -18,7 +18,7 @@
     </check>
     <div class="form-group">
         <label for="name">Full Name</label>
-        <input type="text" class="form-control" id="name" name="name">
+        <input type="text" class="form-control" id="name" name="name" value="{{ @names }}">
     </div>
 
     <check if="{{ isset(@errors['name']) }}">
@@ -27,13 +27,21 @@
 
     <div class="form-group">
         <label for="nickname">Nickname</label>
-        <input type="text" class="form-control" id="nickname" name="nickname">
+        <input type="text" class="form-control" id="nickname" name="nickname" value="{{ @nicknames }}">
     </div>
+
+    <check if="{{ isset(@errors['nickname']) }}">
+        <span class="err" style="color: red;">{{ @errors['nickname'] }}</span>
+    </check>
 
     <div class="form-group">
         <label for="state">State</label>
-        <input type="text" class="form-control" id="state" name="state">
+        <input type="text" class="form-control" id="state" name="state" value="{{ @states }}">
     </div>
+
+    <check if="{{ isset(@errors['state']) }}">
+        <span class="err" style="color: red;">{{ @errors['state'] }}</span>
+    </check>
 
     <div class="form-group">
         <label for="password">Password</label>
