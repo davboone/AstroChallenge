@@ -9,24 +9,28 @@ class Controller
         $this->_f3 = $f3;
     }
 
-    function home() {
+    function home()
+    {
         // instantiate a views object
         $view = new Template();
         echo $view->render('views/home.html');
     }
 
-    function upcoming() {
+    function upcoming()
+    {
         //Display the upcoming events page
         $view = new Template();
-        echo $view-> render('views/upcoming.html');
+        echo $view->render('views/upcoming.html');
     }
 
-    function community() {
+    function community()
+    {
         //Display the community page page
         header('location: http://dboone.greenriverdev.com/phpbb/');
     }
 
-    function signup() {
+    function signup()
+    {
         if (!isset($_SESSION['loggedIn'])) {
             if (!$_SESSION['loggedIn'] instanceof User) {
                 header('location: login');
@@ -38,44 +42,49 @@ class Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             //TODO check which event was clicked when submit was clicked
-            $eventOne=$_POST['eventOne'];
-            $eventTwo=$_POST['eventTwo'];
-            $eventThree=$_POST['eventThree'];
-            $eventFour=$_POST['eventFour'];
+            $eventOne = $_POST['eventOne'];
+            $eventTwo = $_POST['eventTwo'];
+            $eventThree = $_POST['eventThree'];
+            $eventFour = $_POST['eventFour'];
 
         }
 
         //Display the upcoming events page
         $view = new Template();
-        echo $view-> render('views/signup.html');
+        echo $view->render('views/signup.html');
     }
 
-    function eventdetails() {
+    function eventdetails()
+    {
         //Display the upcoming events page
         $view = new Template();
-        echo $view-> render('views/eventdetails.html');
+        echo $view->render('views/eventdetails.html');
     }
 
-    function signupsummary() {
+    function signupsummary()
+    {
         //Display the upcoming events page
         $view = new Template();
-        echo $view-> render('views/signupsummary.html');
+        echo $view->render('views/signupsummary.html');
     }
 
-    function currentevent() {
+    function currentevent()
+    {
         //Display the upcoming events page
         $view = new Template();
-        echo $view-> render('views/currentevent.html');
+        echo $view->render('views/currentevent.html');
     }
 
-    function pastevent() {
+    function pastevent()
+    {
         //Display the upcoming events page
         $view = new Template();
-        echo $view-> render('views/pastevent.html');
+        echo $view->render('views/pastevent.html');
     }
 
 
-    function register() {
+    function register()
+    {
         //Reinitialize session array
         $_SESSION = array();
 
@@ -89,18 +98,15 @@ class Controller
             }
 
             //data validation for name [at least two char should be given]
-            if(Validation::validName(str_replace(' ', '', $_POST['name']))){
+            if (Validation::validName(str_replace(' ', '', $_POST['name']))) {
                 $user->setUserName($_POST['name']);
-            }
-            else{
-                $this->_f3-> set('errors["name"]', '! Please enter a valid name. !');
+            } else {
+                $this->_f3->set('errors["name"]', '! Please enter a valid name. !');
             }
 
-            if (Validation::validEmail($_POST["email"]))
-            {
+            if (Validation::validEmail($_POST["email"])) {
                 $user->setEmail($_POST['email']);
-            }
-            else {
+            } else {
                 $this->_f3->set('errors["email"]', '! Please provide a valid email address. !');
             }
 
@@ -113,7 +119,7 @@ class Controller
             $user->setNickname($_POST['nickname']);
             $user->setLocation($_POST['state']);
 
-            if(empty($this->_f3->get('errors'))){
+            if (empty($this->_f3->get('errors'))) {
                 // save user object in session
                 $_SESSION['user'] = $user;
                 //If there is no error route this to this page
@@ -124,7 +130,7 @@ class Controller
 
         //Display the account registration page
         $view = new Template();
-        echo $view-> render('views/register.html');
+        echo $view->render('views/register.html');
     }
 
     function registersummary()
@@ -134,7 +140,7 @@ class Controller
 
         //Display the page
         $view = new Template();
-        echo $view-> render('views/registersummary.html');
+        echo $view->render('views/registersummary.html');
     }
 
     function login()
@@ -167,7 +173,7 @@ class Controller
         }
         //Display the upcoming events page
         $view = new Template();
-        echo $view-> render('views/login.html');
+        echo $view->render('views/login.html');
     }
 
     function adminportal()
@@ -180,7 +186,7 @@ class Controller
 
         //Display the page
         $view = new Template();
-        echo $view-> render('views/adminportal.html');
+        echo $view->render('views/adminportal.html');
     }
 
     function addevent()
@@ -190,7 +196,7 @@ class Controller
         if (!$_SESSION['loggedIn'] instanceof Admin) {
             //if its not redirect to the login page
             header('location: login');
-        } else{
+        } else {
             // clear old success or failure msg.
             unset($_SESSION['success']);
             $eventName = "";
@@ -199,24 +205,24 @@ class Controller
 
 
             //if it is an admin this is ran once you submit an event
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $startTime = preg_split("/[-\s:]/",$_POST['eventStart']);
-                $endTime = preg_split("/[-\s:]/",$_POST['eventEnd']);
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $startTime = preg_split("/[-\s:]/", $_POST['eventStart']);
+                $endTime = preg_split("/[-\s:]/", $_POST['eventEnd']);
                 $eventName = $_POST['eventName'];
 
                 //validate the dates
-                if (Validation::validDate($startTime[2],$startTime[1],$startTime[0])) {
+                if (Validation::validDate($startTime[2], $startTime[1], $startTime[0])) {
                     $startTime = $_POST['eventStart'];
                 } else {
                     $this->_f3->set('errors["eventStart"]', '! Please submit correct date format !');
                 }
 
-                if (Validation::validDate($endTime[2],$endTime[1],$endTime[0])) {
+                if (Validation::validDate($endTime[2], $endTime[1], $endTime[0])) {
                     $endTime = $_POST['eventEnd'];
                 } else {
                     $this->_f3->set('errors["eventEnd"]', '! Please submit correct date format !');
                 }
-                if (Validation::validInput($_POST['objectid'])){
+                if (Validation::validInput($_POST['objectid'])) {
                     $objectid = $_POST['objectid'];
                 } else {
                     $this->_f3->set('errors["objectid"]', '! Please submit correct date format !');
@@ -237,9 +243,9 @@ class Controller
                     $this->_f3->set('errors["event_image"]', '! Please submit correct date format !');
                 }
 
-                if(empty($this->_f3->get('errors'))){
-                        $result = $GLOBALS['dataLayer']->saveEvents($eventName,$startTime,$endTime,
-                        $objectid,$event_details,$event_desc,$event_image);
+                if (empty($this->_f3->get('errors'))) {
+                    $result = $GLOBALS['dataLayer']->saveEvents($eventName, $startTime, $endTime,
+                        $objectid, $event_details, $event_desc, $event_image);
 
                     if ($result == 'true') {
                         $_SESSION['success'] = true;
@@ -253,14 +259,14 @@ class Controller
 
         //Display the page
         $view = new Template();
-        echo $view-> render('views/addevent.html');
+        echo $view->render('views/addevent.html');
     }
 
     function addobject()
     {
         // clear old success or failure msg.
         unset($_SESSION['success']);
-        
+
         //check if the user account is an Admin type
         if (!$_SESSION['loggedIn'] instanceof Admin) {
             //if its not redirect to the login page
@@ -268,8 +274,8 @@ class Controller
         } else {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (Validation::validInput($_POST['objectname'])) {
-                $objectname = $_POST['objectname'];
-            } else {
+                    $objectname = $_POST['objectname'];
+                } else {
                     $this->_f3->set('errors["objectname"]', '! Event name must be 6 or more characters !');
                 }
 
@@ -279,8 +285,8 @@ class Controller
                     $this->_f3->set('errors["objectcoordinates"]', '! Object name must be in RA DEC celestial coordinates format !');
                 }
 
-                if(empty($this->_f3->get('errors'))){
-                    $result = $GLOBALS['dataLayer']->saveObject($objectname,$objectcoordinates);
+                if (empty($this->_f3->get('errors'))) {
+                    $result = $GLOBALS['dataLayer']->saveObject($objectname, $objectcoordinates);
 
                     if ($result == 'true') {
                         $_SESSION['success'] = true;
@@ -295,7 +301,7 @@ class Controller
 
         //Display the page
         $view = new Template();
-        echo $view-> render('views/addobject.html');
+        echo $view->render('views/addobject.html');
     }
 
     function editobject()
@@ -308,7 +314,7 @@ class Controller
 
         //Display the page
         $view = new Template();
-        echo $view-> render('views/editobject.html');
+        echo $view->render('views/editobject.html');
     }
 
     function editevent()
@@ -319,12 +325,57 @@ class Controller
             header('location: login');
         }
 
+        if (isset($_GET['eventid'])) {
+            $eventId = $_GET['eventid'];
+            // send data to view
+            $result = $GLOBALS['dataLayer']->getOneEvent($eventId);
+            // add data to hive
+            $this->_f3->set('event', $result);
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $eventId = $_POST['eventName'];
+            $start = $_POST['eventStart'];
+            $end = $_POST['eventEnd'];
+            $objectid = $_POST['objectid'];
+            $event_details = $_POST['event_details'];
+            $event_desc = $_POST['event_desc'];
+            $event_image = $_POST['event_image'];
+            $firstPlace = $_POST['first_place'];
+            $secondPlace = $_POST['second_place'];
+            $thirdPlace = $_POST['third_place'];
+            $firstImage = $_POST['first_image'];
+            $secondImage = $_POST['second_image'];
+            $thirdImage = $_POST['third_image'];
+            $eventComplete = $_POST['event_complete'];
+            $archive = $_POST['archive'];
+
+            $result = $GLOBALS['dataLayer']->updateEvent($eventId, $start, $end, $objectid, $event_details,
+                $event_desc, $event_image, $firstPlace, $secondPlace, $thirdPlace, $firstImage,
+                $secondImage, $thirdImage, $eventComplete, $archive);
+
+            if ($result == 'true') {
+                $_SESSION['success'] = true;
+            } else {
+                $_SESSION['success'] = false;
+            }
+        }
+
+
         //Display the page
         $view = new Template();
-        echo $view-> render('views/editevent.html');
+        echo $view->render('views/editevent.html');
     }
 
-    function allevents() {
+    function allevents()
+    {
+        //check if the user account is an Admin type
+        if (!$_SESSION['loggedIn'] instanceof Admin) {
+            //if its not redirect to the login page
+            header('location: login');
+        }
+
         // send data to view
         $result = $GLOBALS['dataLayer']->getEvents();
 
@@ -333,6 +384,6 @@ class Controller
 
         //Display the page
         $view = new Template();
-        echo $view-> render('views/allevents.html');
+        echo $view->render('views/allevents.html');
     }
 }

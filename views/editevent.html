@@ -2,14 +2,6 @@
     <body class="w-75 mx-auto">
     <h1>Edit Event</h1>
 
-    <form class="main-block mt-3" action="#" method="post">
-        <div class="form-group">
-            <label for="search">Object ID</label>
-            <input type="text" class="form-control" id="search" name="search">
-        </div>
-        <button type="submit" class="btn btn-primary mt-3">Search</button>
-    </form>
-
     <check if="{{isset(@SESSION.success) && @SESSION.success == true }}">
         <h5 class="text-center">Successfully saved new event to Database!</h5>
     </check>
@@ -19,48 +11,108 @@
     <form class="main-block mt-3" action="#" method="post">
         <div class="form-group">
             <label for="eventName">Event Name</label>
-            <input type="text" class="form-control" id="eventName" name="eventName" aria-describedby="event name">
+            <input type="text" class="form-control" id="eventName" name="eventName" aria-describedby="event name"
+             placeholder="{{ @event[0]['eventid'] }}" value="{{ @event[0]['eventid'] }}">
         </div>
-
 
         <div class="form-group">
             <label for="eventStart">Event Start Time. example: 2021-06-27</label>
-            <input type="text" class="form-control" id="eventStart" name="eventStart">
+            <input type="text" class="form-control" id="eventStart" name="eventStart"
+                   placeholder="{{ @event[0]['starttime'] }}" value="{{ @event[0]['starttime'] }}">
         </div>
 
 
         <div class="form-group">
             <label for="eventEnd">Event End Time. example: 2021-06-28</label>
-            <input type="text" class="form-control" id="eventEnd" name="eventEnd">
+            <input type="text" class="form-control" id="eventEnd" name="eventEnd"
+                   placeholder="{{ @event[0]['endtime'] }}" value="{{ @event[0]['endtime'] }}">
         </div>
 
         <div class="form-group">
             <label for="objectid">Object ID. Must match an existing Object in the Database</label>
-            <input type="text" class="form-control" id="objectid" name="objectid">
+            <input type="text" class="form-control" id="objectid" name="objectid"
+                   placeholder="{{ @event[0]['objectid'] }}" value="{{ @event[0]['objectid'] }}">
         </div>
 
         <div class="form-group">
             <label for="event_details">Event Rules.
                 Example: Refractors only and a maximum focal length of 400mm</label>
-            <textarea class="form-control" id="event_details" name="event_details" rows="4">
-Enter specific rules for the event here. For example, what equipment is allowed,
-such as specific optics or camera types.
+            <textarea class="form-control" id="event_details" name="event_details" rows="4"
+                      placeholder="{{ @event[0]['event_details'] }}" value="{{ @event[0]['event_details'] }}">
+{{ @event[0]['event_details'] }}
             </textarea>
         </div>
 
         <div class="form-group">
             <label for="event_desc">Event Description. Example:
                 Details about the event and the object involved</label>
-            <textarea class="form-control text-left" id="event_desc" name="event_desc" rows="4">
-Enter a detailed description of this event, what celestial objects are involved
-and any other important information for contestants
+            <textarea class="form-control text-left" id="event_desc" name="event_desc" rows="4"
+                      placeholder="{{ @event[0]['event_desc'] }}" value="{{ @event[0]['event_desc'] }}">
+{{ @event[0]['event_desc'] }}
             </textarea>
         </div>
 
         <div class="form-group">
             <label for="event_image">Event Object Image. Example: messier1.jpg</label>
 
-            <input type="text" class="form-control" id="event_image" name="event_image">
+            <input type="text" class="form-control" id="event_image" name="event_image"
+                   placeholder="{{ @event[0]['event_image'] }}" value="{{ @event[0]['event_image'] }}">
+        </div>
+
+        <div class="form-group">
+            <label for="first_place">First Place Winner. Must match an existing user email.</label>
+
+            <input type="text" class="form-control" id="first_place" name="first_place"
+                   placeholder="{{ @event[0]['first_place'] }}" value="{{ @event[0]['first_place'] }}">
+        </div>
+
+        <div class="form-group">
+            <label for="second_place">Second Place Winner. Must match an existing user email.</label>
+
+            <input type="text" class="form-control" id="second_place" name="second_place"
+                   placeholder="{{ @event[0]['second_place'] }}" value="{{ @event[0]['second_place'] }}">
+        </div>
+
+        <div class="form-group">
+            <label for="third_place">Third Place Winner. Must match an existing user email.</label>
+
+            <input type="text" class="form-control" id="third_place" name="third_place"
+                   placeholder="{{ @event[0]['third_place'] }}" value="{{ @event[0]['third_place'] }}">
+        </div>
+
+        <div class="form-group">
+            <label for="first_image">First Place Image. Example: user1_image.jpg</label>
+
+            <input type="text" class="form-control" id="first_image" name="first_image"
+                   placeholder="{{ @event[0]['first_image'] }}" value="{{ @event[0]['first_image'] }}">
+        </div>
+
+        <div class="form-group">
+            <label for="second_image">Second Place Image. Example: user1_image.jpg</label>
+
+            <input type="text" class="form-control" id="second_image" name="second_image"
+                   placeholder="{{ @event[0]['second_image'] }}" value="{{ @event[0]['second_image'] }}">
+        </div>
+
+        <div class="form-group">
+            <label for="third_image">Third Place Image. Example: user1_image.jpg</label>
+
+            <input type="text" class="form-control" id="third_image" name="third_image"
+                   placeholder="{{ @event[0]['third_image'] }}" value="{{ @event[0]['third_image'] }}">
+        </div>
+
+        <div class="form-group">
+            <label for="event_complete">Is the event complete? Must be "1" for yes or "0" for no</label>
+
+            <input type="text" class="form-control" id="event_complete" name="event_complete"
+                   placeholder="{{ @event[0]['event_complete'] }}" value="{{ @event[0]['event_complete'] }}">
+        </div>
+
+        <div class="form-group">
+            <label for="archive">Archive this event? Must be "1" for yes or "0" for no</label>
+
+            <input type="text" class="form-control" id="archive" name="archive"
+                   placeholder="{{ @event[0]['archive'] }}" value="{{ @event[0]['archive'] }}">
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Submit</button>

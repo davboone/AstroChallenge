@@ -179,4 +179,46 @@ class DataLayer
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    function updateEvent($eventId, $start,$end, $objectid, $event_details, $event_desc, $event_image,
+                         $firstPlace, $secondPlace, $thirdPlace, $firstImage, $secondImage, $thirdImage,
+                         $eventComplete, $archive)
+    {
+        //1. Define the query
+        $sql = "UPDATE events SET eventid=:eventid, objectid=:objectid, starttime=:starttime, endtime=:endtime, 
+                      event_details=:event_details, event_desc=:event_desc, first_place=:firstPlace, 
+                      second_place=:secondPlace, third_place=:thirdPlace, event_image=:event_image, 
+                      first_image=:firstImage, second_image=:secondImage, third_image=:thirdImage, 
+                      event_complete=:eventComplete, archive=:archive WHERE eventid=:eventid";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':eventid', $eventId, PDO::PARAM_STR);
+        $statement->bindParam(':starttime', $start, PDO::PARAM_STR);
+        $statement->bindParam(':endtime', $end, PDO::PARAM_STR);
+        $statement->bindParam(':objectid', $objectid, PDO::PARAM_STR);
+        $statement->bindParam(':event_details', $event_details, PDO::PARAM_STR);
+        $statement->bindParam(':event_desc', $event_desc, PDO::PARAM_STR);
+        $statement->bindParam(':event_image', $event_image, PDO::PARAM_STR);
+        $statement->bindParam(':firstPlace', $firstPlace, PDO::PARAM_STR);
+        $statement->bindParam(':secondPlace', $secondPlace, PDO::PARAM_STR);
+        $statement->bindParam(':thirdPlace', $thirdPlace, PDO::PARAM_STR);
+        $statement->bindParam(':firstImage', $firstImage, PDO::PARAM_STR);
+        $statement->bindParam(':secondImage', $secondImage, PDO::PARAM_STR);
+        $statement->bindParam(':thirdImage', $thirdImage, PDO::PARAM_STR);
+        $statement->bindParam(':eventComplete', $eventComplete, PDO::PARAM_STR);
+        $statement->bindParam(':archive', $archive, PDO::PARAM_STR);
+
+        $lastId = $this->_dbh->lastInsertId();
+
+        //4. Execute the query
+        $result = $statement->execute();
+
+        //5. Process the results
+        return $result;
+    }
+
+
 }
