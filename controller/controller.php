@@ -182,23 +182,30 @@ class Controller
             $password = $_POST['password'];
             $result = $GLOBALS['dataLayer']->getUser($email);
 
-            if ($email === $result[0]['email'] && $password === $result[0]['password']) {
+            if(Validation::validEmail($_POST['email'])) {
 
-                if ($result[0]['usertype'] === 'admin') {
-                    $user = new Admin();
+
+                if ($email === $result[0]['email'] && $password === $result[0]['password']) {
+
+                    if ($result[0]['usertype'] === 'admin') {
+                        $user = new Admin();
+                    } else {
+                        $user = new User();
+                    }
+                    $user->setEmail($email);
+                    $_SESSION['loggedIn'] = $user;
+                    header('location: home');
+
                 } else {
-                    $user = new User();
+                    echo "<h2 style='color: red;'>Invalid username or password!</h2>";
                 }
-                $user->setEmail($email);
-                $_SESSION['loggedIn'] = $user;
-                header('location: home');
-
-            } else {
-                echo "<h2>Invalid username or password!</h2>";
+            }
+            else{
+                $this->_f3->set('errors["email"]', '! Please provide a valid email address. !');
             }
 
-
         }
+        $this->_f3->set('emails',$_POST['email']);
         //Display the upcoming events page
         $view = new Template();
         echo $view->render('views/login.html');
