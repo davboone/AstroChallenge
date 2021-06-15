@@ -77,6 +77,9 @@ class Controller
 
     function pastevent()
     {
+        $pastEvents = $GLOBALS['dataLayer']->getPastEvents();
+        $this->_f3->set('pastEvents',$pastEvents);
+
         //Display the upcoming events page
         $view = new Template();
         echo $view->render('views/pastevent.html');
