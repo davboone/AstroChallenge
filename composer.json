@@ -19,6 +19,6 @@
   },
   "description": "default composer.json for AstroChallenge web app",
   "autoload": {
-    "classmap": ["classes/", "model/", "controller/"]
+    "classmap": ["model/", "controller/","classes/"]
   }
 }
