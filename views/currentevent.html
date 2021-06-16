@@ -2,7 +2,8 @@
     <body class="w-75 mx-auto" style="background-color: lightcyan">
     <main style="background-color: white">
         <div class="alert alert-success" style="color: #1c87c9" role="alert">
-            <h1>Current space events!</h1>
+            <h1>Current events</h1>
+            <h4 class="text-secondary text-center">In-progress events. Signup for these events has closed!</h4>
         </div>
         <form class="row" method="post" action="#">
             <div class="col-4">
@@ -17,40 +18,40 @@
 
                 </div>
             </div>
-            <div class="col-8">
-                <div class="col-12">
-                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+<!--            <div class="col-8">-->
+<!--                <div class="col-12">-->
+<!--                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
 
-                        <div class="col p-4 d-flex flex-column position-static">
-                            <h3 class="mb-0">Live event happeing on Asia</h3>
-                            <div class="mb-1 text-muted">Solar Eclipse</div>
-                            <p><strong>Description: </strong><br>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus nunc at risus commodo,
-                                commodo viverra orci hendrerit. Integer facilisis diam et elit lobortis pellentesque.
-                                Praesent id lacus nec urna euismod ultrices eu at nulla. Quisque dignissim ligula eu lectus
-                                pellentesque, et sagittis ante bibendum. Sed eu ultrices lectus. Sed elementum semper odio
-                                ac hendrerit. </p><br>
-                            <p><strong>Details: </strong> <br>In dapibus odio eget metus pharetra pellentesque. Fusce semper
-                                at ligula eget
-                                suscipit. Sed ut porta est. Pellentesque tellus nisl, imperdiet sit amet nunc non, rhoncus
-                                consectetur arcu.
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="eventOne">
-                                <label class="form-check-label" for="eventOne"> <strong style="color: #04AA6D">Sign me up
-                                    for this event</strong>.</label>
-                            </div>
-                        </div>
+<!--                        <div class="col p-4 d-flex flex-column position-static">-->
+<!--                            <h3 class="mb-0">Live event happeing on Asia</h3>-->
+<!--                            <div class="mb-1 text-muted">Solar Eclipse</div>-->
+<!--                            <p><strong>Description: </strong><br>-->
+<!--                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus nunc at risus commodo,-->
+<!--                                commodo viverra orci hendrerit. Integer facilisis diam et elit lobortis pellentesque.-->
+<!--                                Praesent id lacus nec urna euismod ultrices eu at nulla. Quisque dignissim ligula eu lectus-->
+<!--                                pellentesque, et sagittis ante bibendum. Sed eu ultrices lectus. Sed elementum semper odio-->
+<!--                                ac hendrerit. </p><br>-->
+<!--                            <p><strong>Details: </strong> <br>In dapibus odio eget metus pharetra pellentesque. Fusce semper-->
+<!--                                at ligula eget-->
+<!--                                suscipit. Sed ut porta est. Pellentesque tellus nisl, imperdiet sit amet nunc non, rhoncus-->
+<!--                                consectetur arcu.-->
+<!--                            <div class="form-group form-check">-->
+<!--                                <input type="checkbox" class="form-check-input" id="eventOne">-->
+<!--                                <label class="form-check-label" for="eventOne"> <strong style="color: #04AA6D">Sign me up-->
+<!--                                    for this event</strong>.</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                    </div>
-                </div>
+<!--                    </div>-->
+<!--                </div>-->
 
-            </div>
+<!--            </div>-->
             <div class="col-12">
             <repeat group="{{@currentEvents}}" value="{{ @event }}">
                 <div class="col-12">
                     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div class="col p-4 d-flex flex-column position-static">
-                            <h3 class="mb-0">Event happening on Antartica</h3>
+                            <h3 class="mb-0">{{@event['eventid']}}</h3>
                             <div class="mb-1 text-muted">{{@event['eventid']}}</div>
                             <p><strong>Description: </strong><br>
                                 {{@event['event_desc']}}</p><br>
@@ -63,7 +64,11 @@
 <!--                                    Sign me up for this event.</strong></label>-->
 <!--                            </div>-->
                         </div>
+                        <div class="col p-1 d-flex flex-column position-static">
+                            <img src="images/eventimages/{{ @event['event_image'] }}" alt="{{ @event['event_image'] }}" height="399" width="620"/>
+                        </div>
                     </div>
+
                 </div>
             </repeat>
 <!--                <div class="col-12">-->

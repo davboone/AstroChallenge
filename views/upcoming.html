@@ -1,80 +1,82 @@
-
 <include href="views/header.html">
-<body class="w-75 mx-auto" style="background-color: lightyellow">
-<div class="row">
-    <div class="col-8">
-        <div class="p-4 mt-3 mb-3 bg-light rounded">
-            <h4 class="fst-italic">Upcoming events page.</h4>
-            <p class="mb-0">Welcome to the page of astronomical events. In this page you will find the important
-                astronomical events in coming days. Thank you.</p>
+    <body class="w-75 mx-auto" style="background-color: lightcyan">
+    <main style="background-color: white">
+        <div class="alert alert-success" style="color: #1c87c9" role="alert">
+            <h1>Upcoming events.</h1>
+            <h4 class="text-center text-secondary">Login and navigate to the event signup page to sign up to compete in an event!</h4>
         </div>
-        <repeat group="{{@upcomingEvents}}" value="{{@event}}">
+        <div class="row" method="post" action="#">
             <div class="col-12">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <h3 class="mb-0">{{@event['eventid']}}</h3>
-                        <div class="mb-1 text-muted">{{trim(@event['starttime']," 00:00:00")}}</div>
-                        <img src="images/fullmoon.jpg" alt="image"/></div>
+
+                <div class="col-12" >
+                    <repeat group="{{ @upcomingEvents }}" value="{{ @event }}">
+                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <h3 class="mb-0">Event on {{trim(@event['starttime']," 00:00:00")}}</h3>
+                                <div class="mb-1 text-muted">{{@event['eventid']}}</div>
+                                <p><strong>Description: </strong><br>
+                                    {{@event['event_desc']}} </p><br>
+                                <p><strong>Details: </strong> <br>
+                                    {{@event['event_details']}}
+
+                            </div>
+                            <div class="col p-1 d-flex flex-column position-static">
+                                <img src="images/eventimages/{{ @event['event_image'] }}" alt="{{ @event['event_image'] }}" height="399" width="620"/>
+                            </div>
+                        </div>
+                    </repeat>
+
+                    <!--                Leaving this here for now for testing purposes -->
+                    <!--                <div class="col-12">-->
+                    <!--                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
+                    <!--                        <div class="col p-1 d-flex flex-column position-static">-->
+                    <!--                            <img src="images/blackhole.jpg" alt="imgae" height="399" width="620">-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col p-4 d-flex flex-column position-static">-->
+                    <!--                            <h3 class="mb-0">Event on Jan, 2021</h3>-->
+                    <!--                            <div class="mb-1 text-muted">Black Hole</div>-->
+                    <!--                            <p><strong>Description: </strong><br>-->
+                    <!--                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus nunc at risus commodo,-->
+                    <!--                                commodo viverra orci hendrerit. Integer facilisis diam et elit lobortis pellentesque.-->
+                    <!--                                Praesent id lacus nec urna euismod ultrices . Quisque dignissi ligula eu lectus-->
+                    <!--                                pellentesque, et sagittis ante bibendum. Sed eu ultrices lectus. Sed elementum semper odio-->
+                    <!--                                ac hendrerit. </p><br>-->
+                    <!--                            <p><strong>Details: </strong> <br>In dapibus odio metus pharetra pellentesque. Fusce semper-->
+                    <!--                                at ligula eget-->
+                    <!--                                suscipit. Sed ut porta est. Pellentesque tellus nisl, imperdiet sit amet nunc non, rhoncus-->
+                    <!--                                consectetur arcu.-->
+
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+
+
+                    <!--                    <div class="col-12">-->
+                    <!--                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
+                    <!--                            <div class="col p-4 d-flex flex-column position-static">-->
+                    <!--                                <h3 class="mb-0">Event on Dec, 2019</h3>-->
+                    <!--                                <div class="mb-1 text-muted">Satalite disaster</div>-->
+                    <!--                                <p><strong>Description: </strong><br>-->
+                    <!--                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus nunc at risus commodo,-->
+                    <!--                                    commodo viverra orci hendrerit. Integer facilisis diam et elit lobortis pellentesque.-->
+                    <!--                                    Praesent id lacus nec urna euismo .Quisque dignissim ligula eu lectus-->
+                    <!--                                    pellentesque, et sagittis ante bibendum. Sed eu ultrices lectus. Sed elementum semper odio-->
+                    <!--                                    ac hendrerit. </p><br>-->
+                    <!--                                <p><strong>Details: </strong> <br>In dapibus odio eget metus pharetra pellentesque. Fusce semper-->
+                    <!--                                    at ligula eget-->
+                    <!--                                    suscipit. Sed ut porta est. Pellentesque tellus nisl, imperdiet sit amet nunc non, rhoncus-->
+                    <!--                                    consectetu.-->
+
+                    <!--                            </div>-->
+                    <!--                            <div class="col p-1 d-flex flex-column position-relative">-->
+                    <!--                                <img src="images/satallite.jpg" alt="satalite" height="399" width="620">-->
+                    <!--                            </div>-->
+
+                    <!--                        </div>-->
+
+                    <!--                    </div>-->
+
+                    <!--                </div>-->
                 </div>
             </div>
-        </repeat>
-
-<!--        <div class="col-12">-->
-<!--            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
-<!--                <div class="col p-4 d-flex flex-column position-static">-->
-<!--                    <h3 class="mb-0">Full Moon</h3>-->
-<!--                    <div class="mb-1 text-muted">Nov 26</div>-->
-<!--                    <img src="images/fullmoon.jpg" alt="image"/></div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="col-12">-->
-<!--            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
-<!--                <div class="col p-4 d-flex flex-column position-static">-->
-<!--                    <h3 class="mb-0">Solar Eclipse</h3>-->
-<!--                    <div class="mb-1 text-muted">Dec 22</div>-->
-<!--                    <img src="images/deepSpace2.jpg" alt="image"/></div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="col-12">-->
-<!--            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
-<!--                <div class="col p-4 d-flex flex-column position-static">-->
-<!--                    <h3 class="mb-0">Comet</h3>-->
-<!--                    <div class="mb-1 text-muted">March 11</div>-->
-<!--                    <img src="images/deepSpace3.jpg" alt="image"/></div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="col-12">-->
-<!--            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">-->
-<!--                <div class="col p-4 d-flex flex-column position-static">-->
-<!--                    <h3 class="mb-0">Meteor Shower</h3>-->
-<!--                    <div class="mb-1 text-muted">July 4</div>-->
-<!--                    <img src="images/deepSpace4.jpg" alt="image"/></div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="col-4">-->
-
-<!--        <div class="position-sticky" style="top: 2rem;">-->
-
-
-<!--            <div class="p-4">-->
-<!--                <h4 class="fst-italic">Events you do not want to miss.</h4>-->
-<!--                <ol class="list-unstyled mb-0">-->
-<!--                    <a href="#"><li>Full Moon</li></a>-->
-<!--                    <a href="#"><li>Planetary Event</li></a>-->
-<!--                    <a href="#"><li>Comet</li></a>-->
-<!--                    <a href="#"><li>New Moon</li></a>-->
-<!--                    <a href="#"><li>Lunar Ecliplise</li></a>-->
-<!--                    <a href="#"><li>Solar Event</li></a>-->
-<!--                    <a href="#"><li>Spacecraft Event</li></a>-->
-<!--                    <a href="#"><li>Meteor Shower</li></a>-->
-<!--                </ol>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-</div>
-
-<include href="views/footer.html">
+    </main>
+    <include href="views/footer.html"></include>
