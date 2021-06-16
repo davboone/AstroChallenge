@@ -11,8 +11,6 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once ('vendor/autoload.php');
-require_once ('controller/controller.php');
-require_once ('model/validation.php');
 
 // start session
 session_start();

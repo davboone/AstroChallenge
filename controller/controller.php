@@ -1,5 +1,11 @@
 <?php
 
+/*
+ Authors: Cruiser Baxter, David Boone, Raju Shrestha
+File: controller.php
+Description: controller class for astro challenge app
+ * */
+
 class Controller
 {
     private $_f3; //router
