@@ -4,8 +4,7 @@ Final Project, astrophotography imaging site
 ## Overview
 * See celestial events. Past, present, future.
 * Register account to sign-up and keep track of events you want to be in.
-* Post
-
+* Join a group and share and post images of the event.
 
 ## Authors
 * Cruiser Baxter
@@ -40,5 +39,9 @@ Final Project, astrophotography imaging site
     * This project required a good amount of external research. Challenging process that tested what we learned in class well.
     
 ## UML Class Diagram ##
-- - - - 
+
 ![class inheritance](http://dboone.greenriverdev.com/sdev328/class_inheritance.PNG)
+
+## ER Database Diagram ##
+
+![ER diagram](http://dboone.greenriverdev.com/sdev328/ER_DB_Diagram.PNG)
